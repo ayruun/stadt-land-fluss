@@ -59,13 +59,13 @@
       </label>
       <button
         class="button"
-        @click="printTemplate('printArea')"
+        @click="printTemplate('print-area')"
       >Drucken</button>
     </div>
 
     <div><span>Theme: {{theme}} Cats: {{cats}} Rows: {{rows}} Fields: {{fields}}</span></div>
 
-    <slfTemplate id="printArea" :theme="theme" :fields="fields" ref="slfTemp">
+    <slfTemplate id="print-area" :theme="theme" :fields="fields" ref="slfTemp">
       <div v-for="item in items" :key="item" class="field"><span>{{ item }}</span></div>
       <div v-for="field in fields" :key="field" class="field"><span style="display: none;">invisible</span></div>
     </slfTemplate>
@@ -103,7 +103,7 @@ export default {
   methods: {
     changeTheme(event) {
       this.theme = event.target.value;
-      this.items = json[this.theme];
+      this.items = json[this.theme].slice(0, this.cats + 1);
     },
     changeCats(event) {
       this.cats = parseInt(event.target.value);
