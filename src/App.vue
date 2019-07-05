@@ -32,12 +32,14 @@
           @change="changeCats($event)"
           v-model="cats"
         >
+          <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
           <option value="6">6</option>
           <option value="7">7</option>
           <option value="8">8</option>
           <option value="9">9</option>
+          <option value="10">10</option>
         </select>
       </label>
       <label
@@ -67,7 +69,9 @@
 
     <slfTemplate id="print-area" :theme="theme" :fields="fields" ref="slfTemp">
       <div v-for="item in items" :key="item" class="field"><span>{{ item }}</span></div>
-      <div v-for="field in fields" :key="field" class="field"><span style="display: none;">invisible</span></div>
+      <div v-for="field in fields" :key="field" class="field" contentEditable="true">
+        <span></span>
+      </div>
     </slfTemplate>
 
     <div class="generator">
@@ -92,11 +96,11 @@ export default {
   data() {
     return {
       json,
-      items: json["Standard"].slice(0, 5),
+      items: json["Standard"].slice(0, 4),
       theme: "Standard",
-      cats: 4,
+      cats: 3,
       rows: 5,
-      fields: 30,
+      fields: 25,
       result: "A"
     };
   },
@@ -131,13 +135,13 @@ export default {
   computed: {
     buildTheme() {
       let ulf = this.json[this.theme].slice(0, this.cats + 1);
-      ulf.push(this.json[this.theme][10]);
+      ulf.push(this.json[this.theme][11]);
       return ulf;
     }
   },
   created() {
-    let ulf = this.json[this.theme].slice(0, 5);
-    ulf.push(this.json[this.theme][10]);
+    let ulf = this.json[this.theme].slice(0, this.cats + 1);
+    ulf.push(this.json[this.theme][11]);
     this.items = ulf;
   }
 };

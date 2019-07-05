@@ -10,6 +10,7 @@
         "Promi",
         "Marke",
         "Film",
+        "Hund",
         "Punkte"
     ],
     "Krimi": [
@@ -23,6 +24,7 @@
         "Tatort",
         "Komplize",
         "Zeuge",
+        "Schlagzeile",
         "Punkte"
     ],
     "Quatsch": [
@@ -36,6 +38,7 @@
         "Bucht",
         "Lied",
         "Gericht",
+        "Spitzname",
         "Punkte"
     ]
 }

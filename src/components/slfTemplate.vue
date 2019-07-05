@@ -18,7 +18,7 @@ export default {
     width: auto;
     border: 1px solid black;
     display: grid;
-    grid-template-columns: auto repeat(4, minmax(75px, auto)) auto;
+    grid-template-columns: auto repeat(3, minmax(75px, auto)) auto;
   }
 
   .field {
