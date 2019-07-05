@@ -1,0 +1,38 @@
+{
+    "Standard": [
+        "A",
+        "Stadt",
+        "Land",
+        "Fluss",
+        "Beruf",
+        "Tier",
+        "Hobby",
+        "Promi",
+        "Marke",
+        "Film"
+    ],
+    "Krimi": [
+        "A",
+        "Stadt",
+        "Land",
+        "Fluss",
+        "Todesursache",
+        "Tatwaffe",
+        "Mörder",
+        "Tatort",
+        "Komplize",
+        "Zeuge"
+    ],
+    "Quatsch": [
+        "A",
+        "Stadt",
+        "Land",
+        "Fluss",
+        "Tascheninhalt",
+        "Snack",
+        "Trennungsgrund",
+        "Bucht",
+        "Lied",
+        "Gericht"
+    ]
+}

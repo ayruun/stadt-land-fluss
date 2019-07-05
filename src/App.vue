@@ -12,10 +12,12 @@
           name="theme"
           id="theme"
           class="select"
+          @change="changeTheme($event)"
+          v-model="theme"
         >
-          <option value="1">Standard</option>
-          <option value="2">Krimi</option>
-          <option value="3">Quatsch</option>
+          <option value="Standard">Standard</option>
+          <option value="Krimi">Krimi</option>
+          <option value="Quatsch">Quatsch</option>
         </select>
       </label>
       <label
@@ -27,6 +29,8 @@
           name="categories"
           id="categories"
           class="select"
+          @change="changeCats($event)"
+          v-model="cats"
         >
           <option value="4">4</option>
           <option value="5">5</option>
@@ -45,6 +49,8 @@
           name="rows"
           id="rows"
           class="select"
+          @change="changeRows($event)"
+          v-model="rows"
         >
           <option value="5">5</option>
           <option value="10">10</option>
@@ -57,7 +63,12 @@
       >Drucken</button>
     </div>
 
-    <Template id="printArea" />
+    <div><span>Theme: {{theme}} Cats: {{cats}} Rows: {{rows}} Fields: {{fields}}</span></div>
+
+    <slfTemplate id="printArea" :theme="theme" :fields="fields" ref="slfTemp">
+      <div v-for="item in items" :key="item" class="field"><span>{{ item }}</span></div>
+      <div v-for="field in fields" :key="field" class="field"><span style="display: none;">invisible</span></div>
+    </slfTemplate>
 
     <div class="generator">
       <p id="result">{{ result }}</p>
@@ -70,19 +81,40 @@
 </template>
 
 <script>
-import Template from "./components/Template.vue";
+import slfTemplate from "./components/slfTemplate.vue";
+import json from './assets/categories.json';
 
 export default {
   name: "app",
   components: {
-    Template
+    slfTemplate
   },
   data() {
     return {
+      json,
+      items: json["Standard"].slice(0, 5),
+      theme: "Standard",
+      cats: 4,
+      rows: 5,
+      fields: 20,
       result: "A"
     };
   },
   methods: {
+    changeTheme(event) {
+      this.theme = event.target.value;
+      this.items = json[this.theme];
+    },
+    changeCats(event) {
+      this.cats = parseInt(event.target.value);
+      this.fields = (this.cats + 1) * this.rows;
+      this.$refs.slfTemp.$refs.frame.style["grid-template-columns"] = `auto repeat(${this.cats}, minmax(75px, auto)`;
+      this.items = json[this.theme].slice(0, this.cats + 1);
+    },
+    changeRows(event) {
+      this.rows = parseInt(event.target.value);
+      this.fields = (this.cats + 1) * this.rows;
+    },
     printTemplate(divName) {
       let printContents = document.getElementById(divName).innerHTML;
       let originalContents = document.body.innerHTML;
@@ -102,7 +134,7 @@ export default {
 <style>
 html,
 body {
-  color: black;
+  color: rgb(33, 32, 43);
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
