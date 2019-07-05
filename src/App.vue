@@ -96,24 +96,24 @@ export default {
       theme: "Standard",
       cats: 4,
       rows: 5,
-      fields: 20,
+      fields: 30,
       result: "A"
     };
   },
   methods: {
     changeTheme(event) {
       this.theme = event.target.value;
-      this.items = json[this.theme].slice(0, this.cats + 1);
+      this.items = this.buildTheme;
     },
     changeCats(event) {
       this.cats = parseInt(event.target.value);
-      this.fields = (this.cats + 1) * this.rows;
-      this.$refs.slfTemp.$refs.frame.style["grid-template-columns"] = `auto repeat(${this.cats}, minmax(75px, auto)`;
-      this.items = json[this.theme].slice(0, this.cats + 1);
+      this.$refs.slfTemp.$refs.frame.style["grid-template-columns"] = `auto repeat(${this.cats}, minmax(75px, auto)) auto`;
+      this.items = this.buildTheme;
+      this.fields = (this.cats + 2) * this.rows;
     },
     changeRows(event) {
       this.rows = parseInt(event.target.value);
-      this.fields = (this.cats + 1) * this.rows;
+      this.fields = (this.cats + 2) * this.rows;
     },
     printTemplate(divName) {
       let printContents = document.getElementById(divName).innerHTML;
@@ -127,6 +127,18 @@ export default {
       this.result = String.fromCharCode(randomNum);
       // TODO: remove already selected chars from pool
     }
+  },
+  computed: {
+    buildTheme() {
+      let ulf = this.json[this.theme].slice(0, this.cats + 1);
+      ulf.push(this.json[this.theme][10]);
+      return ulf;
+    }
+  },
+  created() {
+    let ulf = this.json[this.theme].slice(0, 5);
+    ulf.push(this.json[this.theme][10]);
+    this.items = ulf;
   }
 };
 </script>

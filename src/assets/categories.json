@@ -9,7 +9,8 @@
         "Hobby",
         "Promi",
         "Marke",
-        "Film"
+        "Film",
+        "Punkte"
     ],
     "Krimi": [
         "A",
@@ -21,7 +22,8 @@
         "Mörder",
         "Tatort",
         "Komplize",
-        "Zeuge"
+        "Zeuge",
+        "Punkte"
     ],
     "Quatsch": [
         "A",
@@ -33,6 +35,7 @@
         "Trennungsgrund",
         "Bucht",
         "Lied",
-        "Gericht"
+        "Gericht",
+        "Punkte"
     ]
 }
