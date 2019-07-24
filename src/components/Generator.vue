@@ -18,14 +18,28 @@ export default {
   name: "Generator",
   data() {
     return {
-      result: "A"
+      result: "A",
+      charArr: []
     };
   },
   methods: {
     randomChar() {
-      let randomNum = Math.random() * (90 - 65) + 65;
-      this.result = String.fromCharCode(randomNum);
-      // TODO: remove already selected chars from pool
+      if (this.charArr.length === 0) {
+        for (let i = 0; i < 26; i++) {
+          this.charArr.push(String.fromCharCode(65 + i));
+        }
+        alert("Das waren alle Buchstaben, jetzt geht es von vorne los!");
+      }
+
+      let randomNum = Math.floor(Math.random() * Math.floor(this.charArr.length - 1));
+
+      this.result = this.charArr[randomNum];
+      this.charArr.splice(randomNum, 1);
+    }
+  },
+  created() {
+    for (let i = 0; i < 26; i++) {
+      this.charArr.push(String.fromCharCode(65 + i));
     }
   }
 };
