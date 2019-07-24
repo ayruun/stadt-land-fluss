@@ -66,22 +66,44 @@
         >Drucken</button>
       </div>
 
-      <slfTemplate id="print-area" :theme="theme" :fields="fields" ref="slfTemp">
-        <div v-for="item in items" :key="item" class="field"><span>{{ item }}</span></div>
-        <div v-for="field in fields" :key="field" class="field" contentEditable="true">
+      <slfTemplate
+        id="print-area"
+        :theme="theme"
+        :fields="fields"
+        ref="slfTemp"
+      >
+        <div
+          v-for="item in items"
+          :key="item"
+          class="field"
+        >
+          <span>{{ item }}</span>
+        </div>
+        <div
+          v-for="field in fields"
+          :key="field"
+          class="field"
+          contenteditable="true"
+        >
           <span></span>
         </div>
       </slfTemplate>
 
       <Generator />
     </div>
+
+    <a
+      href="https://github.com/ayruun/stadt-land-fluss"
+      target="_blank"
+      id="github-btn"
+    >open on GitHub</a>
   </div>
 </template>
 
 <script>
 import slfTemplate from "./components/slfTemplate.vue";
 import Generator from "./components/Generator.vue";
-import json from './assets/categories.json';
+import json from "./assets/categories.json";
 
 export default {
   name: "app",
@@ -106,7 +128,9 @@ export default {
     },
     changeCats(event) {
       this.cats = parseInt(event.target.value);
-      this.$refs.slfTemp.$refs.frame.style["grid-template-columns"] = `auto repeat(${this.cats}, minmax(75px, auto)) auto`;
+      this.$refs.slfTemp.$refs.frame.style[
+        "grid-template-columns"
+      ] = `auto repeat(${this.cats}, minmax(75px, auto)) auto`;
       this.items = this.buildTheme;
       this.fields = (this.cats + 2) * this.rows;
     },
@@ -138,20 +162,20 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
 
 * {
   color: rgb(33, 32, 43);
-  font-family: 'Permanent Marker', cursive;
+  font-family: "Permanent Marker", cursive;
   margin: 0;
   padding: 0;
 }
 
 :root {
   --primary: rgb(29, 29, 29);
-  --secondaray: rgb(126, 126, 126);
-  --accent: #007AA2;
-  --hover: #86D5E7;
+  --secondary: rgb(126, 126, 126);
+  --accent: #007aa2;
+  --hover: #86d5e7;
 }
 
 #app {
@@ -172,7 +196,7 @@ export default {
   padding: 50px;
   margin: 25px;
   border-radius: 20px;
-  box-shadow: 0px 3px 15px 0 rgba(0,0,0,0.75);
+  box-shadow: 0px 3px 15px 0 rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -180,7 +204,7 @@ export default {
 }
 
 #headline {
-  font-family: 'Permanent Marker', cursive;
+  font-family: "Permanent Marker", cursive;
   font-size: 2.5em;
   margin-bottom: 50px;
 }
@@ -224,6 +248,31 @@ export default {
 }
 
 .button:focus {
+  outline: none;
+}
+
+#github-btn {
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+#github-btn:hover {
+  background-color: var(--secondary);
+  cursor: pointer;
+}
+
+#github-btn:active {
+  background-color: var(--primary);
+  position: relative;
+  top: 2px;
+}
+
+#github-btn:focus {
   outline: none;
 }
 </style>
