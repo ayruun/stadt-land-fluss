@@ -30,6 +30,10 @@ export default {
     align-items: center;
   }
 
+  .field:focus {
+    outline: none;
+  }
+
   span {
     margin: 0 5px;
   }
